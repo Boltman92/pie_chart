@@ -1,7 +1,7 @@
 import React from 'react';
-import './App.css';
 
-function App(props) {
+
+function PieChart(props) {
  
   const sumArray = Object.values(props.obj).reduce((acc,rec) => acc+rec)
   const percent = (element, res_object) => {
@@ -31,7 +31,7 @@ function App(props) {
 }
 
   return (
-     <div className='App'> 
+     <div className='PieChart'> 
      <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
      <circle cx="10" cy="10" r="10" fill="red"
       />
@@ -49,4 +49,4 @@ function App(props) {
   );
 }
 
-export default App;
+export default PieChart;
