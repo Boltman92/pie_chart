@@ -5,12 +5,18 @@ import Start from './start_page'
 
 function Home() {
   
-  
+   function generateColor() {
+  return '#' + Math.floor(Math.random()*16777215).toString(16)
+}
+
   const [result, setResult] = useState({})  
-  const saveInputData = (value, value_number) => {
-    setResult({...result, [value]: value_number})
+  const saveInputData = (value, valueNumber) => {
+    setResult({...result, [value]: {number: valueNumber, color: generateColor()}})
   }   
 
+console.log(result)
+console.log(Object.values(result))
+ 
 
   return (
       <Router>

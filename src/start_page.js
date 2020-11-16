@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 const Start = (props) => {
 
  const [value, setValue] = useState('')
-  const [value_number, setValue_num] = useState('')
+  const [valueNumber, setValue_num] = useState('')
   
   const onChange = (e) => {
     const { value } = e.target
@@ -17,7 +17,7 @@ const Start = (props) => {
   }
 
  const onClick = () => {
-   props.saveInputData(value, value_number)
+   props.saveInputData(value, valueNumber)
    setValue('')
    setValue_num('')
  }
@@ -26,7 +26,7 @@ const Start = (props) => {
       <div className="start">
       <div className="input">
           <input value={value} onChange={onChange} type="text" placeholder="type item" />
-          <input value={value_number} onChange={onChange_num} type="number" min="1" placeholder="type value" />
+          <input value={valueNumber} onChange={onChange_num} type="number" min="1" placeholder="type value" />
           <button
             type="button"
             onClick={onClick} >
