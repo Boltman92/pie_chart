@@ -16,7 +16,7 @@ function Home() {
 
 console.log(result)
 console.log(Object.values(result))
- 
+ console.log(Object.values(result).sort((a,b) => b.number - a.number))
 
   return (
       <Router>
