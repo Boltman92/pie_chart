@@ -4,38 +4,39 @@ import React from 'react';
 function PieChart(props) {
  
   const inputValues = Object.values(props.obj).map(item => item.number)
-  const inputColors = Object.values(props.obj).map(item => item.color)
   const sumArray = inputValues.reduce((acc,rec) => acc+rec)
 
-  const sorted_val = inputValues.sort((a,b) => b-a)
+  const sortedValues = Object.values(props.obj).sort((a,b) => b.number - a.number)
   
-  const cirсle_length = 3.14*10
+  const CIRCLE_LENGHT = 3.14*10
   
   let percentageWeight = []
   let currentSum = sumArray
-  for(let i=0; i<sorted_val.length-1; i++) {
-    percentageWeight = [...percentageWeight, currentSum-sorted_val[i]]
-    currentSum = currentSum - sorted_val[i]
+  for(let i=0; i<sortedValues.length-1; i++) {
+    percentageWeight = [...percentageWeight, currentSum-sortedValues[i].number]
+    currentSum = currentSum - sortedValues[i].number
   }
   percentageWeight = [sumArray, ...percentageWeight]
 
+  let drawnObj = JSON.parse(JSON.stringify(props.obj))
+  Object.values(drawnObj).map((item,index) => {
+   return item.number = percentageWeight[index]
+}) 
+
   let firstEl = []
-  console.log(percentageWeight)
-  for(let i=0; i<sorted_val.length; i++) {
-  firstEl = [...firstEl, percentageWeight[i]/sumArray*cirсle_length]
+  for(let i=0; i<sortedValues.length; i++) {
+  firstEl = [...firstEl, percentageWeight[i]/sumArray*CIRCLE_LENGHT]
   }
-  
- 
 
   return (
      <div className='PieChart'> 
      <svg viewBox="0 0 20 40" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-     {percentageWeight.map((sector, index) => {
+     {Object.values(drawnObj).map((sector, index) => {
        return <circle cx="10" cy="10" r="5" fill="transparent"
        key={index}
-      stroke={inputColors[index]}
+      stroke={sector.color}
        strokeWidth="10"
-       strokeDasharray={`${firstEl[index]} ${cirсle_length}`}
+       strokeDasharray={`${firstEl[index]} ${CIRCLE_LENGHT}`}
        transform="rotate(-90) translate(-20)"
       />})} )
      
