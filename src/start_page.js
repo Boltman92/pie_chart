@@ -1,10 +1,27 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-
+import Legend from './legend'
 
 
 const Start = (props) => {
 
+ const mockObj = {
+    beer: {number:10,
+           color: "red"
+    },
+    vodka: {number:20,
+           color: "green"
+    },
+    martini: {number:30,
+           color: "black"
+    },
+    milk: {number:40,
+           color: "blue"
+    },
+    jin: {number:50,
+           color: "yellow"
+    },
+ }
  const [value, setValue] = useState('')
   const [valueNumber, setValue_num] = useState('')
   
@@ -21,7 +38,7 @@ const Start = (props) => {
    setValue('')
    setValue_num('')
  }
-
+ console.log(props)
   return ( 
       <div className="start">
       <div className="input">
@@ -34,6 +51,7 @@ const Start = (props) => {
           </button>
           <Link to="/result"> watch results </Link>
           </div>
+          <Legend obj={mockObj}/> 
       </div>
   )
 }

@@ -22,7 +22,7 @@ console.log(Object.values(result))
       <Router>
       <div>
       <Switch>
-      <Route path="/" exact component={() => <Start saveInputData={saveInputData} />} />
+      <Route path="/" exact component={() => <Start saveInputData={saveInputData} obj={result}/>} />
       <Route path="/result" exact component={() => <PieChart obj={result} />} />  
       </Switch>
       </div>
