@@ -21,14 +21,22 @@ function Legend(props) {
 
 
    return (
-       <div className="parentleg"> {(Object.keys(props.obj).length > 0) && ( <div className="legend">
-       <svg className="legend-values" viewBox="0 0 20 50" xmlns="http://www.w3.org/2000/svg" width="10%" height="100%">
-     {smallCircles} 
+        <div>{(Object.keys(props.obj).length > 0) && ( 
+       <>{arrayValues.map((value, index) => {       
+      return <div className="legend" key={index}>
+      <svg  viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" width="10%" height="100%">
+      <circle cx="10" cy="10" r="5" fill={arrayColors[index]} 
+        key={index}    
+        stroke="black"
+       strokeWidth="1"
+      />          
  </svg>
-     <div className="legend-values">
-      {explanation} </div>
-         </div>)}
- </div>
+     <p> {`${value} : ${arrayNumbers[index]}`} </p>
+       </div> }
+     ) 
+} </>
+        )}
+</div>
    )
 }
   

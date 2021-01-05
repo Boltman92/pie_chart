@@ -55,12 +55,17 @@ code {
 .legend{
   display: flex;  
   flex-direction: row;   
-  justify-content: center;  
-  height: 100vh;  
+  justify-content: left;    
   align-items: center; 
   align-content:center;
+  border:rgb(85, 93, 94) solid 1px; 
+  
 }  
 
+p{
+  margin: 0px 3px 3px;
+  font-weight: bold;
+}
 .legend-values {
   display: flex;
   flex-direction: column;
