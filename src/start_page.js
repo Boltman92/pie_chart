@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-
+import Legend from './legend'
 
 
 const Start = (props) => {
@@ -21,7 +21,7 @@ const Start = (props) => {
    setValue('')
    setValue_num('')
  }
-
+ console.log(props)
   return ( 
       <div className="start">
       <div className="input">
@@ -34,6 +34,7 @@ const Start = (props) => {
           </button>
           <Link to="/result"> watch results </Link>
           </div>
+          <Legend obj={props.obj} deleteEl={props.deleteEl}/> 
       </div>
   )
 }

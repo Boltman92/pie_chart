@@ -27,20 +27,55 @@ code {
 
 .start {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   height: 100vh;
   background-color: rgb(213, 200, 226);
+  z-index: 1;
 }
 
 .input {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 10px;
+  margin: 70px;
   padding: 10px;
   background-color: rgb(88, 95, 160);
 }
 
+.parentleg{
+  width: 60%
+}
 
+.circles{
+  width: 30vw;
+}
+
+.legend{
+  display: flex;  
+  flex-direction: row;   
+  justify-content: left;    
+  align-items: center; 
+  align-content:center;
+  border:rgb(85, 93, 94) solid 1px; 
+  
+}  
+
+p{
+  margin: 0px 3px 3px;
+  font-weight: bold;
+}
+.legend-values {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20%;
+  padding: 60px 10px;
+  border: 1px solid black;
+  font-size: xx-large;
+}
+
+li{
+  display: flex;
+  flex-direction: column;
+}

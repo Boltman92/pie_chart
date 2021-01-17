@@ -1,45 +1,36 @@
 import React from 'react';
+import Legend from './legend'
 
+const CIRCLE_LENGHT = 3.14*10
 
 function PieChart(props) {
- 
-  const inputValues = Object.values(props.obj).map(item => item.number)
-  const inputColors = Object.values(props.obj).map(item => item.color)
-  const sumArray = inputValues.reduce((acc,rec) => acc+rec)
-
-  const sorted_val = inputValues.sort((a,b) => b-a)
+  const sumArray = Object.values(props.obj).reduce((acc,rec) => acc + rec.number, 0)
+  const sortedValues = Object.values(props.obj).sort((a,b) => b.number - a.number)
   
-  const cirсle_length = 3.14*10
-  
-  let percentageWeight = []
+  let percentageWeight = [ sumArray ]
   let currentSum = sumArray
-  for(let i=0; i<sorted_val.length-1; i++) {
-    percentageWeight = [...percentageWeight, currentSum-sorted_val[i]]
-    currentSum = currentSum - sorted_val[i]
-  }
-  percentageWeight = [sumArray, ...percentageWeight]
 
-  let firstEl = []
-  console.log(percentageWeight)
-  for(let i=0; i<sorted_val.length; i++) {
-  firstEl = [...firstEl, percentageWeight[i]/sumArray*cirсle_length]
+  for (const val of sortedValues) {
+    percentageWeight.push(currentSum - val.number);
+    currentSum -= val.number;
   }
   
- 
+  const firstEl = percentageWeight.map(weight => CIRCLE_LENGHT * (weight / sumArray));
 
   return (
      <div className='PieChart'> 
      <svg viewBox="0 0 20 40" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
-     {percentageWeight.map((sector, index) => {
+     {sortedValues.map((sector, index) => {
        return <circle cx="10" cy="10" r="5" fill="transparent"
        key={index}
-      stroke={inputColors[index]}
+      stroke={sector.color}
        strokeWidth="10"
-       strokeDasharray={`${firstEl[index]} ${cirсle_length}`}
+       strokeDasharray={`${firstEl[index]} ${CIRCLE_LENGHT}`}
        transform="rotate(-90) translate(-20)"
       />})} )
      
      </svg>
+     <Legend obj={props.obj} deleteEl={props.deleteEl}/> 
     </div>
   );
 }
