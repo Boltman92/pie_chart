@@ -1,26 +1,21 @@
 import React from 'react';
+import Legend from './legend'
 
+const CIRCLE_LENGHT = 3.14*10
 
 function PieChart(props) {
- 
-  const inputValues = Object.values(props.obj).map(item => item.number)
-  const sumArray = inputValues.reduce((acc,rec) => acc+rec)
-
+  const sumArray = Object.values(props.obj).reduce((acc,rec) => acc + rec.number, 0)
   const sortedValues = Object.values(props.obj).sort((a,b) => b.number - a.number)
-  const CIRCLE_LENGHT = 3.14*10
   
-  let percentageWeight = []
+  let percentageWeight = [ sumArray ]
   let currentSum = sumArray
-  for(let i=0; i<sortedValues.length-1; i++) {
-    percentageWeight = [...percentageWeight, currentSum-sortedValues[i].number]
-    currentSum = currentSum - sortedValues[i].number
-  }
-  percentageWeight = [sumArray, ...percentageWeight]
 
-  let firstEl = []
-  for(let i=0; i<sortedValues.length; i++) {
-  firstEl = [...firstEl, percentageWeight[i]/sumArray*CIRCLE_LENGHT]
+  for (const val of sortedValues) {
+    percentageWeight.push(currentSum - val.number);
+    currentSum -= val.number;
   }
+  
+  const firstEl = percentageWeight.map(weight => CIRCLE_LENGHT * (weight / sumArray));
 
   return (
      <div className='PieChart'> 
@@ -35,6 +30,7 @@ function PieChart(props) {
       />})} )
      
      </svg>
+     <Legend obj={props.obj} deleteEl={props.deleteEl}/> 
     </div>
   );
 }

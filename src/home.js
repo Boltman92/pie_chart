@@ -13,16 +13,26 @@ function Home() {
   const saveInputData = (value, valueNumber) => {
     setResult({...result, [value]: {number: valueNumber, color: generateColor()}})
   }   
+ //const filteredByKey = Object.fromEntries(Object.entries(result).filter(([key, val]) => key !== Object.keys(inputObj)[index]))
+ const deleteEl = (inputObj, index, value) => {  
+   //const searchWord = Object.keys(inputObj)[index];
+  //  const newState = Object.fromEntries(Object.entries(result).filter(([key, val]) => key !== searchWord));
+  //  console.log('*************');
+  //  console.log(inputObj, index);
+  //  console.log(searchWord);
+  //  console.log(newState);
+  //  console.log('*************');
+   const newState = { ...result };
+   delete newState[value];
+   return setResult(newState)
+ }
 
-console.log(result)
-console.log(Object.values(result))
- console.log(Object.values(result).sort((a,b) => b.number - a.number))
 
   return (
       <Router>
       <div>
       <Switch>
-      <Route path="/" exact component={() => <Start saveInputData={saveInputData} obj={result}/>} />
+      <Route path="/" exact component={() => <Start saveInputData={saveInputData} obj={result} deleteEl={deleteEl}/>} />
       <Route path="/result" exact component={() => <PieChart obj={result} />} />  
       </Switch>
       </div>
